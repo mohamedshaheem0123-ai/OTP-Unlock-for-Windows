@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: otp-login
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: FERNET_KEY
+        sync: false
+      - key: PUBLIC_URL
+        sync: false
+      - key: DB_PATH
+        value: /tmp/otp_auth.db
